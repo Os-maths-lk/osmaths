@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="si" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>O/L Mathematics | Ovinda Shehan Academy</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Chart.js CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Noto+Sans+Sinhala:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- Firebase SDKs -->
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
+    
+    <style>
+        body { font-family: 'Poppins', 'Noto Sans Sinhala', sans-serif; }
+    </style>
+</head>
+<body class="bg-slate-900 text-slate-100 flex flex-col min-h-screen antialiased">
+
+    <!-- Navigation Bar -->
+    <nav class="sticky top-0 z-50 bg-slate-950/90 backdrop-blur-md border-b border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                
+                <!-- Logo (3 Times Click for Hidden Secret Admin Portal) -->
+                <div class="flex items-center space-x-3 cursor-pointer select-none" onclick="handleLogoClick()">
+                    <div class="w-10 h-10 bg-cyan-500/20 border border-cyan-500/40 rounded-xl flex items-center justify-center text-cyan-400 font-bold text-xl hover:scale-105 transition">
+                        OS
+                    </div>
+                    <div>
+                        <span class="text-lg font-bold bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent block leading-tight">
+                            OVINDA SHEHAN
+                        </span>
+                        <span class="text-[10px] text-slate-400 tracking-wider font-medium">O/L MATHEMATICS ACADEMY</span>
+                    </div>
+                </div>
+
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex items-center space-x-1 text-xs font-semibold">
+                    <button onclick="showSection('home')" class="nav-btn px-3 py-2 rounded-lg text-slate-300 hover:bg-slate-800 transition">මුල් පිටුව (Home)</button>
+                    <button onclick="showSection('login')" class="nav-btn px-3 py-2 rounded-lg text-cyan-400 hover:bg-slate-800 transition">Student Login</button>
+                    <button onclick="showSection('classes')" class="nav-btn px-3 py-2 rounded-lg text-slate-300 hover:bg-slate-800 transition">පන්ති විස්තර</button>
+                    <button onclick="showSection('resources')" class="nav-btn px-3 py-2 rounded-lg text-slate-300 hover:bg-slate-800 transition">Past Papers</button>
+                    <button onclick="showSection('payments')" class="nav-btn px-3 py-2 rounded-lg text-slate-300 hover:bg-slate-800 transition">Payment Info</button>
+                </div>
+
+                <div class="hidden sm:flex items-center space-x-3">
+                    <a href="https://wa.me/94770000000" target="_blank" class="bg-emerald-500 hover:bg-emerald-600 text-slate-950 font-bold px-3.5 py-2 rounded-xl text-xs transition flex items-center gap-1.5 shadow-lg shadow-emerald-500/20">
+                        <i class="fa-brands fa-whatsapp text-sm"></i> WhatsApp
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- SECTION 1: HOME PAGE -->
+    <main id="sec-home" class="sec-content space-y-20 py-10">
+        <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center pt-8">
+            <div class="inline-flex items-center gap-2 bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 px-4 py-1.5 rounded-full text-xs font-semibold mb-6">
+                <span class="w-2 h-2 rounded-full bg-cyan-400 animate-pulse"></span>
+                O/L Mathematics Target & Revision Masterclass
+            </div>
+            <h1 class="text-4xl sm:text-6xl font-extrabold tracking-tight leading-tight mb-6">
+                O/L ගණිතයට <span class="bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">'A' සාමාර්ථයක්</span> ගන්න <br class="hidden sm:inline">හරියටම වැඩ කරමු!
+            </h1>
+            <p class="text-slate-300 text-sm sm:text-base max-w-3xl mx-auto mb-8 leading-relaxed">
+                Ovinda Shehan සර් විසින් මෙහෙයවන විශේෂිත O/L ගණිත පන්ති මාලාව. Cloud Database එකක් මඟින් Paper Marks සහ Study Tracker එක පාලනය වන සිංහලයේ අංක 01 පන්ති පද්ධතිය.
+            </p>
+            <div class="flex justify-center">
+                <button onclick="showSection('login')" class="bg-gradient-to-r from-cyan-500 to-blue-600 hover:opacity-90 text-slate-950 font-bold px-10 py-3.5 rounded-xl transition shadow-lg shadow-cyan-500/20 text-sm flex items-center gap-2">
+                    <i class="fa-solid fa-right-to-bracket"></i> Student Login
+                </button>
+            </div>
+        </section>
+    </main>
+
+    <!-- SECTION: STUDENT LOGIN -->
+    <main id="sec-login" class="sec-content hidden max-w-md mx-auto my-16 px-4">
+        <div class="bg-slate-800 p-8 rounded-2xl border border-slate-700 space-y-6">
+            <h2 class="text-2xl font-bold text-center text-white"><i class="fa-solid fa-user-graduate text-cyan-400 mr-2"></i>Student Login</h2>
+            <div>
+                <label class="block text-xs text-slate-400 mb-1">Student Reg No (ID)</label>
+                <input type="text" id="loginRegNo" placeholder="e.g. M-101" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-cyan-500">
+            </div>
+            <div>
+                <label class="block text-xs text-slate-400 mb-1">Password</label>
+                <input type="password" id="loginPassword" placeholder="******" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-cyan-500">
+            </div>
+            <button onclick="studentLogin()" class="w-full bg-cyan-500 hover:bg-cyan-600 text-slate-950 font-bold py-3 rounded-xl transition">Log In</button>
+        </div>
+    </main>
+
+    <!-- SECRET SECTION: HIDDEN ADMIN LOGIN (Triggered via 3 clicks on Logo) -->
+    <main id="sec-admin-login" class="sec-content hidden max-w-md mx-auto my-16 px-4">
+        <div class="bg-slate-800 p-8 rounded-2xl border border-amber-500/50 space-y-6 shadow-2xl shadow-amber-500/10">
+            <div class="text-center">
+                <span class="text-[10px] bg-amber-500/10 text-amber-400 px-2 py-0.5 rounded border border-amber-500/20 font-bold tracking-wider uppercase">Secret Portal</span>
+                <h2 class="text-2xl font-bold text-amber-400 mt-2"><i class="fa-solid fa-user-shield mr-2"></i>Admin Access</h2>
+            </div>
+            <div>
+                <label class="block text-xs text-slate-400 mb-1">Admin Security Key</label>
+                <input type="password" id="adminKey" placeholder="Enter Security Code" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-amber-500">
+            </div>
+            <button onclick="adminLogin()" class="w-full bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold py-3 rounded-xl transition">Enter Admin Panel</button>
+        </div>
+    </main>
+
+    <!-- SECTION: ADMIN PANEL -->
+    <main id="sec-admin-panel" class="sec-content hidden max-w-7xl mx-auto px-4 py-10 space-y-8">
+        <div class="bg-slate-800 p-6 rounded-2xl border border-amber-500/30 flex justify-between items-center">
+            <div>
+                <h1 class="text-2xl font-bold text-amber-400">Admin Control Panel</h1>
+                <p class="text-xs text-slate-400">Add Students & Record Paper Marks</p>
+            </div>
+            <button onclick="showSection('home')" class="bg-slate-900 text-xs px-4 py-2 rounded-xl text-slate-300 hover:text-white">Logout Admin</button>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <!-- Add New Student Form -->
+            <div class="bg-slate-800 p-6 rounded-2xl border border-slate-700 space-y-4">
+                <h3 class="text-lg font-bold text-white">1. අලුත් ළමයෙකු එකතු කරන්න</h3>
+                <div>
+                    <label class="block text-xs text-slate-400 mb-1">Student Name</label>
+                    <input type="text" id="addName" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-2 text-sm">
+                </div>
+                <div>
+                    <label class="block text-xs text-slate-400 mb-1">Reg No / ID</label>
+                    <input type="text" id="addReg" placeholder="M-101" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-2 text-sm">
+                </div>
+                <div>
+                    <label class="block text-xs text-slate-400 mb-1">Assign Password</label>
+                    <input type="text" id="addPass" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-2 text-sm">
+                </div>
+                <button onclick="addNewStudent()" class="w-full bg-emerald-500 text-slate-950 font-bold py-2.5 rounded-xl text-sm">Save Student to Cloud</button>
+            </div>
+
+            <!-- Record Marks Form -->
+            <div class="bg-slate-800 p-6 rounded-2xl border border-slate-700 space-y-4">
+                <h3 class="text-lg font-bold text-white">2. Paper Marks ඇතුළත් කරන්න</h3>
+                <div>
+                    <label class="block text-xs text-slate-400 mb-1">Student ID (Reg No)</label>
+                    <input type="text" id="markReg" placeholder="M-101" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-2 text-sm">
+                </div>
+                <div>
+                    <label class="block text-xs text-slate-400 mb-1">Paper Name</label>
+                    <input type="text" id="markPaper" placeholder="e.g. Target Paper 01" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-2 text-sm">
+                </div>
+                <div class="grid grid-cols-2 gap-2">
+                    <div>
+                        <label class="block text-xs text-slate-400 mb-1">Mark (%)</label>
+                        <input type="number" id="markValue" placeholder="85" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-2 text-sm">
+                    </div>
+                    <div>
+                        <label class="block text-xs text-slate-400 mb-1">Grade</label>
+                        <input type="text" id="markGrade" placeholder="A" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-2 text-sm">
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-xs text-slate-400 mb-1">Teacher Note</label>
+                    <input type="text" id="markNote" placeholder="විශිෂ්ටයි!" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-2 text-sm">
+                </div>
+                <button onclick="addMarksToStudent()" class="w-full bg-cyan-500 text-slate-950 font-bold py-2.5 rounded-xl text-sm">Update Marks</button>
+            </div>
+        </div>
+    </main>
+
+    <!-- SECTION 2: STUDENT DASHBOARD -->
+    <main id="sec-dashboard" class="sec-content hidden max-w-7xl mx-auto px-4 py-10 space-y-8">
+        <div class="bg-slate-800 p-6 rounded-2xl border border-slate-700 flex justify-between items-center">
+            <div>
+                <span class="text-xs font-bold text-cyan-400">STUDENT PORTAL</span>
+                <h1 id="welcomeUser" class="text-2xl font-bold text-white mt-1">ආයුබෝවන්!</h1>
+            </div>
+            <button onclick="showSection('home')" class="bg-slate-900 text-xs px-4 py-2 rounded-xl text-slate-300">Logout</button>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <div class="bg-slate-800 p-6 rounded-2xl border border-slate-700 space-y-4">
+                <h3 class="text-lg font-bold text-white"><i class="fa-solid fa-plus-circle text-cyan-400 mr-2"></i>වැඩ කළ පැය ගණන</h3>
+                <div>
+                    <label class="block text-xs text-slate-300 mb-1">දිනය</label>
+                    <input type="date" id="logDate" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-2 text-sm">
+                </div>
+                <div>
+                    <label class="block text-xs text-slate-300 mb-1">පැය ගණන</label>
+                    <input type="number" id="logHours" step="0.5" placeholder="4.5" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-2 text-sm">
+                </div>
+                <button onclick="saveHours()" class="w-full bg-cyan-500 text-slate-950 font-bold py-3 rounded-xl text-sm">Save Entry</button>
+            </div>
+
+            <div class="lg:col-span-2 space-y-8">
+                <div class="bg-slate-800 p-6 rounded-2xl border border-slate-700">
+                    <h3 class="text-base font-bold text-white mb-4">Paper Marks Progress</h3>
+                    <div class="relative h-60 w-full"><canvas id="marksChart"></canvas></div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- SECTION: CLASSES -->
+    <main id="sec-classes" class="sec-content hidden max-w-7xl mx-auto px-4 py-10 space-y-8">
+        <h1 class="text-3xl font-bold">Class Timetable</h1>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="bg-slate-800 p-6 rounded-2xl border border-slate-700">
+                <h3 class="text-xl font-bold">Theory Class</h3>
+                <p class="text-xs text-slate-400 mt-2">සෑම සෙනසුරාදාම ප.ව. 8.00 - 10.30</p>
+            </div>
+            <div class="bg-slate-800 p-6 rounded-2xl border border-slate-700">
+                <h3 class="text-xl font-bold">Paper Class</h3>
+                <p class="text-xs text-slate-400 mt-2">සෑම ඉරිදාම පෙ.ව. 8.00 - 11.00</p>
+            </div>
+            <div class="bg-slate-800 p-6 rounded-2xl border border-slate-700">
+                <h3 class="text-xl font-bold">Revision Class</h3>
+                <p class="text-xs text-slate-400 mt-2">සෑම බදාදාම ප.ව. 7.30 - 10.00</p>
+            </div>
+        </div>
+    </main>
+
+    <!-- SECTION: RESOURCES -->
+    <main id="sec-resources" class="sec-content hidden max-w-7xl mx-auto px-4 py-10 space-y-8">
+        <h1 class="text-3xl font-bold">Past Papers & Tutes</h1>
+        <div class="bg-slate-800 p-6 rounded-2xl border border-slate-700 flex justify-between items-center">
+            <div>
+                <h3 class="text-base font-bold">O/L Mathematics 10-Year Past Papers</h3>
+                <p class="text-xs text-slate-400">PDF Collection with Marking Schemes</p>
+            </div>
+            <button onclick="alert('Download started!')" class="bg-cyan-500 text-slate-950 font-bold px-4 py-2 rounded-xl text-xs">Download</button>
+        </div>
+    </main>
+
+    <!-- SECTION: PAYMENTS -->
+    <main id="sec-payments" class="sec-content hidden max-w-7xl mx-auto px-4 py-10 space-y-8">
+        <h1 class="text-3xl font-bold">Payment Info</h1>
+        <div class="bg-slate-800 p-6 rounded-2xl border border-slate-700 space-y-2 text-sm">
+            <p>ACCOUNT NAME: <b>Ovinda Shehan</b></p>
+            <p>BANK: <b>Commercial Bank</b></p>
+            <p>ACCOUNT NUMBER: <b>800XXXXXXX</b></p>
+        </div>
+    </main>
+
+    <script>
+        // --- FIREBASE CONFIGURATION ---
+        const firebaseConfig = {
+            databaseURL: "https://ovinda-maths-default-rtdb.asia-southeast1.firebasedatabase.app/" 
+        };
+        firebase.initializeApp(firebaseConfig);
+        const db = firebase.database();
+
+        let activeStudent = null;
+        let marksChartInstance = null;
+
+        // --- TRIPLE CLICK LOGO SECRET DETECTOR ---
+        let logoClickCount = 0;
+        let logoClickTimer = null;
+
+        function handleLogoClick() {
+            logoClickCount++;
+            clearTimeout(logoClickTimer);
+            logoClickTimer = setTimeout(() => { logoClickCount = 0; }, 1000);
+
+            if (logoClickCount === 3) {
+                logoClickCount = 0;
+                showSection('admin-login');
+            }
+        }
+
+        // --- NAVIGATION ---
+        function showSection(secId) {
+            document.querySelectorAll('.sec-content').forEach(sec => sec.classList.add('hidden'));
+            document.getElementById('sec-' + secId).classList.remove('hidden');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // --- STUDENT AUTHENTICATION ---
+        function studentLogin() {
+            const reg = document.getElementById('loginRegNo').value.trim();
+            const pass = document.getElementById('loginPassword').value.trim();
+
+            if (!reg || !pass) { alert('කරුණාකර විස්තර ඇතුළත් කරන්න.'); return; }
+
+            db.ref('students/' + reg).once('value', snapshot => {
+                const data = snapshot.val();
+                if (data && data.password === pass) {
+                    activeStudent = { reg, ...data };
+                    document.getElementById('welcomeUser').innerText = `ආයුබෝවන්, ${data.name}! (${reg})`;
+                    showSection('dashboard');
+                    renderCharts();
+                } else {
+                    alert('වැරදි Reg Number හෝ Password එකකි!');
+                }
+            });
+        }
+
+        // --- ADMIN AUTHENTICATION ---
+        function adminLogin() {
+            const key = document.getElementById('adminKey').value;
+            if (key === 'admin123') { // Master Admin Password
+                showSection('admin-panel');
+                document.getElementById('adminKey').value = '';
+            } else {
+                alert('වැරදි Security Key එකක්!');
+            }
+        }
+
+        function addNewStudent() {
+            const name = document.getElementById('addName').value;
+            const reg = document.getElementById('addReg').value.trim();
+            const pass = document.getElementById('addPass').value;
+
+            if(!name || !reg || !pass) return alert('සියලු තොරතුරු ඇතුළත් කරන්න.');
+
+            db.ref('students/' + reg).set({
+                name: name,
+                password: pass,
+                paperMarks: [],
+                studyLogs: []
+            }, err => {
+                if(!err) {
+                    alert('ළමයා සාර්ථකව Cloud Database එකට එකතු විය!');
+                    document.getElementById('addName').value = '';
+                    document.getElementById('addReg').value = '';
+                    document.getElementById('addPass').value = '';
+                }
+            });
+        }
+
+        function addMarksToStudent() {
+            const reg = document.getElementById('markReg').value.trim();
+            const paper = document.getElementById('markPaper').value;
+            const mark = parseInt(document.getElementById('markValue').value);
+            const grade = document.getElementById('markGrade').value;
+            const note = document.getElementById('markNote').value;
+
+            if(!reg || !paper) return alert('විස්තර ඇතුළත් කරන්න.');
+
+            const markData = { paper, mark, grade, note };
+            
+            db.ref('students/' + reg + '/paperMarks').push(markData, err => {
+                if(!err) alert('Marks සාර්ථකව එකතු විය!');
+            });
+        }
+
+        // --- LOG STUDY HOURS ---
+        function saveHours() {
+            if(!activeStudent) return;
+            const date = document.getElementById('logDate').value;
+            const hours = parseFloat(document.getElementById('logHours').value);
+
+            if(!date || !hours) return alert('විස්තර ඇතුළත් කරන්න.');
+
+            db.ref('students/' + activeStudent.reg + '/studyLogs').push({ date, hours }, err => {
+                if(!err) {
+                    alert('වැඩ කළ පැය ගණන Save විය!');
+                    renderCharts();
+                }
+            });
+        }
+
+        // --- RENDER DATA & CHARTS ---
+        function renderCharts() {
+            if(!activeStudent) return;
+
+            db.ref('students/' + activeStudent.reg).on('value', snapshot => {
+                const data = snapshot.val();
+                const marks = data.paperMarks ? Object.values(data.paperMarks) : [];
+
+                const labels = marks.map(m => m.paper);
+                const scores = marks.map(m => m.mark);
+
+                const ctx = document.getElementById('marksChart').getContext('2d');
+                if (marksChartInstance) marksChartInstance.destroy();
+
+                marksChartInstance = new Chart(ctx, {
+                    type: 'line',
+                    data: {
+                        labels: labels,
+                        datasets: [{
+                            label: 'Paper Mark (%)',
+                            data: scores,
+                            borderColor: '#10b981',
+                            backgroundColor: 'rgba(16, 185, 129, 0.2)',
+                            fill: true,
+                            tension: 0.3
+                        }]
+                    },
+                    options: { responsive: true, maintainAspectRatio: false }
+                });
+            });
+        }
+
+        document.getElementById('logDate').valueAsDate = new Date();
+    </script>
+</body>
+</html>
